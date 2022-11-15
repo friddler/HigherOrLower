@@ -24,6 +24,13 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        textScore = findViewById(R.id.textViewScore)
+        textTime = findViewById(R.id.textViewTime)
+        buttonHigher = findViewById(R.id.buttonHigher)
+        buttonLower = findViewById(R.id.buttonLower)
+
+
+
 
 
     }
