@@ -15,7 +15,8 @@
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="540dp"
+        android:fontFamily="@font/audiowide"
         android:background="@drawable/button_shape1"
         android:text="PLAY"
         android:textSize="25sp" />
@@ -26,6 +27,7 @@
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/audiowide"
         android:background="@drawable/button_shape1"
         android:text="EXIT"
         android:textSize="25sp" />
