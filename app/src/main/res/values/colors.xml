@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Green color scheme for HigherOrLower -->
+    <!-- Green color theme for HigherOrLower -->
 
     <color name="budGreen">#87BD5A</color>
     <color name="pistachio">#A4D77D</color>
@@ -18,11 +18,21 @@
     <color name="mauve">#CBB1FF</color>
     <color name="carnationPink">#FFAADE</color>
 
-    <!-- Red color scheme for HigherOrLower -->
+    <!-- Red color theme for HigherOrLower -->
     <color name="darkRed">#9B0101</color>
     <color name="red">#FC1515</color>
-    <color name="spanishGray">#979393</color>
+    <color name="spanishGray">#9A9A9A</color>
     <color name="gray">#DCDCDD</color>
+
+
+    <!-- Old windows theme for HigherOrLower -->
+    <color name="smokyBlack">#494848</color>
+    <color name="grayWeb">#6E6E6E</color>
+    <color name="silversand">#C5C7C8</color>
+    <color name="heliotrope">#CE75E8</color>
+    <color name="viridiangreen">#0F9FA4</color>
+
+
 
 
 

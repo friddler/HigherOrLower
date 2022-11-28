@@ -1,23 +1,24 @@
 package com.example.higherorlower
 
-
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import java.util.*
 
 
+open class GameActivity : AppCompatActivity() {
 
-class GameActivity : AppCompatActivity() {
-
-    lateinit var visibleCard: ImageView
+    lateinit var cardImageGame : ImageView
 
     lateinit var textScore : TextView
+    lateinit var textLife : TextView
     lateinit var textTime : TextView
+
     lateinit var textViewGameResult : TextView
 
     lateinit var buttonHigher : Button
@@ -25,14 +26,18 @@ class GameActivity : AppCompatActivity() {
 
     var userScore = 0
 
+    var userLife = 10
 
-/*
+
     lateinit var timer : CountDownTimer
-    private val startTimer : Short = 10000
-    var timeLeft : Short = startTimer
+    private val startTimer : Long = 60000
+    var timeLeft : Long = startTimer
 
- */
-    val Deck = deck()
+
+
+    val cards = Deck()
+
+    var previousCard = cards.getNewCard()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,94 +45,121 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
 
-        visibleCard = findViewById(R.id.visibleCard)
+        cardImageGame = findViewById(R.id.cardImageGame)
 
 
         textScore = findViewById(R.id.textViewScore)
-        textTime = findViewById(R.id.textViewTime)
+        textLife = findViewById(R.id.textLife)
+        textTime = findViewById(R.id.textTime)
         textViewGameResult = findViewById(R.id.textViewGameResult)
 
+
+
+        cardImageGame.setImageResource(previousCard.image)
+
+
+        // PROBLEM: The currentCard gets a new constant random value from 2-14 every game. PROBLEM SOLVED
+
+        startTimer()
+
+
         buttonHigher = findViewById(R.id.buttonHigher)
-        buttonLower = findViewById(R.id.buttonLower)
-
-
-        val currentCard = Deck.getNewCard()
-        visibleCard.setImageResource(currentCard.image)
-
-
         buttonHigher.setOnClickListener {
-            isHigher()
+
+            val nextCard = cards.getNewCard()
+
+            if (nextCard.value > previousCard.value) {
+                userScore = userScore + 1
+                textViewGameResult.text = "You're superduper right!"
+                textScore.text = userScore.toString()
+            } else if (nextCard.value < previousCard.value) {
+                userLife--
+                textViewGameResult.text = "Sorry you're wrong! It was lower :( "
+                textLife.text = userLife.toString()
+            } else  {
+                textViewGameResult.text = "The value is the same. Try again! "
+                textLife.text = userLife.toString()
+            }
+
+            previousCard = nextCard
+            cardImageGame.setImageResource(nextCard.image)
+
+            gameOver()
+
+
+            Log.d("!!!",previousCard.value.toString())
+            Log.d("???",nextCard.value.toString())
+
 
 
         }
 
+        buttonLower = findViewById(R.id.buttonLower)
         buttonLower.setOnClickListener {
-            isLower()
+
+            val nextCard = cards.getNewCard()
+
+            if (nextCard.value < previousCard.value) {
+                userScore = userScore + 1
+                textViewGameResult.text = "You're superduper right!"
+                textScore.text = userScore.toString()
+            } else if (nextCard.value > previousCard.value) {
+                userLife--
+                textViewGameResult.text = "Sorry you're wrong! It was higher :( "
+                textLife.text = userLife.toString()
+            } else {
+                textViewGameResult.text = "The value is the same. Try again! "
+                textLife.text = userLife.toString()
+            }
+
+            previousCard = nextCard
+            cardImageGame.setImageResource(nextCard.image)
+
+            gameOver()
+
+
+            Log.d("!!!",previousCard.value.toString())
+            Log.d("???",nextCard.value.toString())
+
+
 
         }
-
-
 
     }
 
-
-    private fun isLower() {
-
-
-        val nextCard = Deck.getNewCard()
-        val currentCard = Deck.getNewCard()
-
-        if (nextCard.value == currentCard.value) {
-            textViewGameResult.text = "The value is the same. Try again! "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-
-        } else if (nextCard.value < currentCard.value){
-            userScore = userScore + 1
-            textViewGameResult.text = "You're superduper right!"
-            textScore.text = userScore.toString()
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-
-        } else if (nextCard.value > currentCard.value) {
-            textViewGameResult.text = "Sorry you're wrong! It was higher :( "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-
+    fun gameOver(){
+        if(userLife == 0){
+            textViewGameResult.text = "Game over my friend..."
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra("score", userScore)
+            startActivity(intent)
+            finish()
         }
-
-        Log.d("!!!",currentCard.value.toString())
-        Log.d("!!!",nextCard.value.toString())
-
 
     }
-    private fun isHigher(){
 
-        val nextCard = Deck.getNewCard()
-        val currentCard = Deck.getNewCard()
+    fun startTimer(){
 
-        if (nextCard.value == currentCard.value) {
-            textViewGameResult.text = "The value is the same. Try again! "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
+        timer = object : CountDownTimer(timeLeft,1000){
+            override fun onTick(millsLeft: Long) {
+                timeLeft = millsLeft
+                updateText()
+            }
 
-        } else if (nextCard.value > currentCard.value){
-            userScore = userScore + 1
-            textViewGameResult.text = "You're superduper right!"
-            textScore.text = userScore.toString()
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
+            override fun onFinish() {
+                updateText()
 
-        } else if (nextCard.value < currentCard.value) {
-            textViewGameResult.text = "Sorry you're wrong! It was lower :( "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
+                textLife.text = userLife.toString()
+                textViewGameResult.text = "Time is up! You lost!"
+                gameOver()
 
+            }
+        }.start()
+    }
 
-        }
-        Log.d("???",currentCard.value.toString())
-
-
+    fun updateText(){
+        val timeRemaining : Int = (timeLeft / 1000).toInt()
+        textTime.text = String.format(Locale.getDefault(),"%02d", timeRemaining)
     }
 
 
@@ -135,75 +167,89 @@ class GameActivity : AppCompatActivity() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 islower
 val nextCard = Deck.getNewCard()
         val currentCard = Deck.getNewCard()
-
         if (nextCard.value < currentCard.value) {
             userScore = userScore + 1
             textViewGameResult.text = "You're superduper right!"
             textScore.text = userScore.toString()
             Deck.getNewCard()
             visibleCard.setImageResource(nextCard.image)
-
         } else if (nextCard.value > currentCard.value){
             textViewGameResult.text = "Sorry you're wrong! It was higher :( "
             Deck.getNewCard()
             visibleCard.setImageResource(nextCard.image)
-
         } else if (nextCard.value == currentCard.value) {
             textViewGameResult.text = "The value is the same. Try again! "
             Deck.getNewCard()
             visibleCard.setImageResource(nextCard.image)
-
         }
-
-
-
 isHigher
         val nextCard = Deck.getNewCard()
         val currentCard = Deck.getNewCard()
-
         if (nextCard.value > currentCard.value) {
             userScore = userScore + 1
             textViewGameResult.text = "You're superduper right!"
             textScore.text = userScore.toString()
             Deck.getNewCard()
             visibleCard.setImageResource(nextCard.image)
-
         } else if (nextCard.value < currentCard.value){
             textViewGameResult.text = "Sorry you're wrong! It was lower :( "
             Deck.getNewCard()
             visibleCard.setImageResource(nextCard.image)
-
         } else if (nextCard.value == currentCard.value) {
             textViewGameResult.text = "The value is the same. Try again! "
             Deck.getNewCard()
             visibleCard.setImageResource(nextCard.image)
-
-
         }
  */
 /*
             val intent = Intent(this@GameActivity,Deck::class.java)
             intent.putExtra("card", 2-14)
             startActivity(intent)
-
             if(currentCard < nextCard){
                 userScore = userScore + 1
                 textViewGameResult.text = "You're superduper right!"
                 textScore.text = userScore.toString()
-
             } else {
                 textViewGameResult.text = "Sorry you were wrong :( "
                 val card = Deck.getNewCard()
                 visibleCard.setImageResource(card.image)
             }
-
-
-
  */
+
+
 
 
 
