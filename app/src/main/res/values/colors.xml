@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Color scheme for HigherOrLower -->
+    <!-- Green color scheme for HigherOrLower -->
 
     <color name="budGreen">#87BD5A</color>
     <color name="pistachio">#A4D77D</color>
@@ -17,6 +17,13 @@
     <color name="mediumPurple">#A576FF</color>
     <color name="mauve">#CBB1FF</color>
     <color name="carnationPink">#FFAADE</color>
+
+    <!-- Red color scheme for HigherOrLower -->
+    <color name="darkRed">#9B0101</color>
+    <color name="red">#FC1515</color>
+    <color name="spanishGray">#979393</color>
+    <color name="gray">#DCDCDD</color>
+
 
 
 
