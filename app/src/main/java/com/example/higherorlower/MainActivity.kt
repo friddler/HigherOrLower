@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         playButton.setOnClickListener {
 
-            val intent = Intent(this@MainActivity, GameActivity::class.java)
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
 
         }

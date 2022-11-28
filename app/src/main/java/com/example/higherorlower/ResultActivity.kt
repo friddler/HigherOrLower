@@ -29,7 +29,7 @@ class ResultActivity : AppCompatActivity() {
 
         // When the player clicks the playAgain-button it will get the results by the intent and go back to the MainActivity
         playAgain.setOnClickListener {
-            val intent = Intent(this@ResultActivity, GameActivity::class.java)
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             finish()
         }

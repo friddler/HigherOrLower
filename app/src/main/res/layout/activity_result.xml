@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/logodarkred"
     tools:context=".ResultActivity">
 
     <Button
@@ -12,10 +11,11 @@
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="144dp"
-        android:background="@drawable/button_shape1"
-        android:fontFamily="@font/audiowide"
+        android:layout_marginBottom="132dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/courier_prime"
         android:text="PLAY AGAIN"
+        android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,25 +28,30 @@
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginBottom="52dp"
-        android:background="@drawable/button_shape1"
-        android:fontFamily="@font/audiowide"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/courier_prime"
         android:text="EXIT"
+        android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="178dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="292dp"
         android:layout_marginEnd="176dp"
+        android:fontFamily="@font/courier_prime"
         android:text="Your score: "
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,10 +59,14 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="224dp"
+        android:fontFamily="@font/courier_prime"
         android:text="Congratulations!"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
