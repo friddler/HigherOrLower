@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/anton</item>
         <item>@font/audiowide</item>
+        <item>@font/bangers</item>
+        <item>@font/calistoga</item>
         <item>@font/candal</item>
         <item>@font/contrail_one</item>
         <item>@font/courier_prime</item>

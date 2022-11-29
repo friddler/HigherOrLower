@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/backgroundapp10"
     tools:context=".MainActivity">
 
 
@@ -13,24 +14,26 @@
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="530dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/courier_prime"
+        android:fontFamily="@font/calistoga"
         android:text="PLAY"
-        android:textColor="#000000"
-        android:textSize="25sp" />
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:backgroundTint="@null" />
 
     <Button
         android:id="@+id/exitButton"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/courier_prime"
+        android:fontFamily="@font/calistoga"
         android:text="EXIT"
-        android:textColor="#000000"
-        android:textSize="25sp" />
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:backgroundTint="@null" />
 
 
 </LinearLayout>

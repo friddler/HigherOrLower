@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.HigherOrLower" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/spanishGray</item>
+        <item name="colorPrimary">#c879ff</item>
         <item name="colorPrimaryVariant">@color/viridiangreen</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">#FAD179</item>
         <!-- Secondary brand color. -->
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">#1F1F1F</item>
+        <item name="android:statusBarColor" tools:targetApi="l">#FAD179</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

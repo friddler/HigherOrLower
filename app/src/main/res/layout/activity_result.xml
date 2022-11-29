@@ -4,19 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundapp9"
     tools:context=".ResultActivity">
+
+
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="26dp" />
 
     <Button
         android:id="@+id/buttonAgain"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="128dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/courier_prime"
+        android:fontFamily="@font/calistoga"
         android:text="PLAY AGAIN"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="25sp"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -27,31 +37,32 @@
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/courier_prime"
+        android:fontFamily="@font/calistoga"
         android:text="EXIT"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="25sp"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="178dp"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="320dp"
         android:layout_marginEnd="176dp"
-        android:fontFamily="@font/courier_prime"
+        android:fontFamily="@font/spicy_rice"
         android:text="Your score: "
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:textAllCaps="false"
+        android:textColor="#FFF34A77"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,14 +70,16 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="224dp"
-        android:fontFamily="@font/courier_prime"
+        android:layout_marginTop="244dp"
+        android:fontFamily="@font/spicy_rice"
         android:text="Congratulations!"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:textAllCaps="false"
+        android:textColor="#FFF34A77"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
