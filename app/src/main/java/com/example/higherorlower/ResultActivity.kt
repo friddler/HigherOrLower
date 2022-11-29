@@ -65,14 +65,14 @@ class ResultActivity : AppCompatActivity() {
         val score = intent.getIntExtra("score", 0)
         result.text = "Your score: " + score
 
-        // When the player clicks the playAgain-button it will get the results by the intent and go back to the MainActivity
+        // When the player clicks the playAgain-button it will get the results by the intent and go back to the GameActivity
         playAgain.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        // The same when player clicks the exit-button it will get these Intent functions and exit the app/game.
+
         exit.setOnClickListener {
 
 
