@@ -36,7 +36,7 @@ open class GameActivity : AppCompatActivity() {
     var userLife = 10
 
     lateinit var timer : CountDownTimer
-    private val startTimer : Long = 60000
+    private val startTimer : Long = 60000 // Counts down from 60 seconds
     var timeLeft : Long = startTimer
 
     val cards = Deck()
@@ -58,12 +58,10 @@ open class GameActivity : AppCompatActivity() {
         textViewGameResult = findViewById(R.id.textViewGameResult)
         konfettiView = findViewById(R.id.konfettiView)
 
-
         cardImageGame.animate().apply{
             duration = 1000
             rotationYBy(360f)
         }.start()
-
 
         cardImageGame.setImageResource(previousCard.image)
 
@@ -83,7 +81,6 @@ open class GameActivity : AppCompatActivity() {
         }
 
 
-
     }
 
 // Function to check if the card is lower than the previous card
@@ -97,17 +94,7 @@ fun isLower(){
             textViewGameResult.text = "You're superduper right!"
             textScore.text = userScore.toString()
 
-            konfettiView.start(
-                Party(
-                angle = 10,
-                speed = 0f,
-                maxSpeed = 50f,
-                damping = 0.9f,
-                spread = 360,
-                colors = listOf(0x70e000, 0x70e000, 0x70e000, 0x70e000),
-                position = Position.Relative(0.5,0.3),
-                emitter = Emitter(duration = 100, TimeUnit.MILLISECONDS).max(100))
-            )
+            konfetti()
 
         } else if (nextCard.value > previousCard.value) {
             userLife--
@@ -123,8 +110,6 @@ fun isLower(){
 
         gameOver()
 
-
-
     }
 
 // Function to check if the card is higher than the previous card
@@ -138,17 +123,7 @@ fun isHigher(){
             textViewGameResult.text = "You're superduper right!"
             textScore.text = userScore.toString()
 
-            konfettiView.start(
-                Party(
-                    angle = 10,
-                    speed = 0f,
-                    maxSpeed = 50f,
-                    damping = 0.9f,
-                    spread = 360,
-                    colors = listOf(0x70e000, 0x70e000, 0x70e000, 0x70e000),
-                    position = Position.Relative(0.5,0.3),
-                    emitter = Emitter(duration = 100, TimeUnit.MILLISECONDS).max(100))
-            )
+            konfetti()
 
         } else if (nextCard.value < previousCard.value) {
             userLife--
@@ -167,6 +142,7 @@ fun isHigher(){
     }
 
  // If the userlife is 0 the game will go to results a display the score
+
  @SuppressLint("SetTextI18n")
  fun gameOver(){
         if(userLife == 0){
@@ -200,8 +176,6 @@ fun isHigher(){
         timer.cancel()
 
     }
-
-
     // Updates the timer and checks if there's no time left, it will go to ResultActivity and display the score.
 
     fun updateTextAndGameOver(){
@@ -216,104 +190,22 @@ fun isHigher(){
             finish()
         }
 
+    }
 
+    fun konfetti(){
+
+        konfettiView.start(
+            Party(
+                angle = 10,
+                speed = 0f,
+                maxSpeed = 50f,
+                damping = 0.9f,
+                spread = 360,
+                colors = listOf(0x70e000, 0x70e000, 0x70e000, 0x70e000),
+                position = Position.Relative(0.5,0.3),
+                emitter = Emitter(duration = 100, TimeUnit.MILLISECONDS).max(100))
+        )
 
     }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-islower
-val nextCard = Deck.getNewCard()
-        val currentCard = Deck.getNewCard()
-        if (nextCard.value < currentCard.value) {
-            userScore = userScore + 1
-            textViewGameResult.text = "You're superduper right!"
-            textScore.text = userScore.toString()
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-        } else if (nextCard.value > currentCard.value){
-            textViewGameResult.text = "Sorry you're wrong! It was higher :( "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-        } else if (nextCard.value == currentCard.value) {
-            textViewGameResult.text = "The value is the same. Try again! "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-        }
-isHigher
-        val nextCard = Deck.getNewCard()
-        val currentCard = Deck.getNewCard()
-        if (nextCard.value > currentCard.value) {
-            userScore = userScore + 1
-            textViewGameResult.text = "You're superduper right!"
-            textScore.text = userScore.toString()
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-        } else if (nextCard.value < currentCard.value){
-            textViewGameResult.text = "Sorry you're wrong! It was lower :( "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-        } else if (nextCard.value == currentCard.value) {
-            textViewGameResult.text = "The value is the same. Try again! "
-            Deck.getNewCard()
-            visibleCard.setImageResource(nextCard.image)
-        }
- */
-/*
-            val intent = Intent(this@GameActivity,Deck::class.java)
-            intent.putExtra("card", 2-14)
-            startActivity(intent)
-            if(currentCard < nextCard){
-                userScore = userScore + 1
-                textViewGameResult.text = "You're superduper right!"
-                textScore.text = userScore.toString()
-            } else {
-                textViewGameResult.text = "Sorry you were wrong :( "
-                val card = Deck.getNewCard()
-                visibleCard.setImageResource(card.image)
-            }
- */
-
-
-
-
-
-
-
-
-
-
-

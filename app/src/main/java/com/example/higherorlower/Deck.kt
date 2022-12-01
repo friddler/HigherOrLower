@@ -68,8 +68,6 @@ class Deck {
 
          shuffle()
 
-
-
     }
     fun shuffle(){
         deckOfCards.shuffle()
@@ -83,6 +81,5 @@ class Deck {
         }
         return deckOfCards.removeAt(deckOfCards.size -1)
     }
-
 
 }

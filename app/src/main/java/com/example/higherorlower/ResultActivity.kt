@@ -43,8 +43,6 @@ class ResultActivity : AppCompatActivity() {
 
         scoreAndMessage()
 
-
-
         // When the player clicks the playAgain-button it will get the results by the intent and go back to the GameActivity
         playAgain.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
@@ -54,11 +52,7 @@ class ResultActivity : AppCompatActivity() {
 
 
         exit.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-
-
+            finishAffinity()
         }
         
     }
@@ -95,6 +89,5 @@ class ResultActivity : AppCompatActivity() {
         } else if (score > 30){
             messageText.text = "Wow you're really good at this!"
         }
-
     }
 }

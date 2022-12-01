@@ -32,11 +32,5 @@ class MainActivity : AppCompatActivity() {
             finish()
 
         }
-
-
-
-
-
-
     }
 }
