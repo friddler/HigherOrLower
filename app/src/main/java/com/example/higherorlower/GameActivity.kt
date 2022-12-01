@@ -1,13 +1,13 @@
 package com.example.higherorlower
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
@@ -29,10 +29,11 @@ open class GameActivity : AppCompatActivity() {
     lateinit var buttonHigher : Button
     lateinit var buttonLower : Button
 
+    lateinit var konfettiView: KonfettiView
+
     var userScore = 0
 
     var userLife = 10
-
 
     lateinit var timer : CountDownTimer
     private val startTimer : Long = 60000
@@ -55,17 +56,18 @@ open class GameActivity : AppCompatActivity() {
         textLife = findViewById(R.id.textLife)
         textTime = findViewById(R.id.textTime)
         textViewGameResult = findViewById(R.id.textViewGameResult)
+        konfettiView = findViewById(R.id.konfettiView)
 
-        cardImageGame.setOnClickListener {
-            cardImageGame.animate().apply{
-                duration = 1000
-                rotationYBy(360f)
-            }.start()
-        }
+
+        cardImageGame.animate().apply{
+            duration = 1000
+            rotationYBy(360f)
+        }.start()
+
 
         cardImageGame.setImageResource(previousCard.image)
 
-        // PROBLEM: The currentCard gets a new constant random value from 2-14 every game. PROBLEM SOLVED
+        // PROBLEM: The previousCard gets a new constant random value from 2-14 every game. PROBLEM SOLVED
 
         startTimer()
 
@@ -81,17 +83,31 @@ open class GameActivity : AppCompatActivity() {
         }
 
 
+
     }
 
-
-    fun isLower(){
+// Function to check if the card is lower than the previous card
+@SuppressLint("SetTextI18n")
+fun isLower(){
 
         val nextCard = cards.getNewCard()
 
         if (nextCard.value < previousCard.value) {
-            userScore = userScore + 1
+            userScore += 1
             textViewGameResult.text = "You're superduper right!"
             textScore.text = userScore.toString()
+
+            konfettiView.start(
+                Party(
+                angle = 10,
+                speed = 0f,
+                maxSpeed = 50f,
+                damping = 0.9f,
+                spread = 360,
+                colors = listOf(0x70e000, 0x70e000, 0x70e000, 0x70e000),
+                position = Position.Relative(0.5,0.3),
+                emitter = Emitter(duration = 100, TimeUnit.MILLISECONDS).max(100))
+            )
 
         } else if (nextCard.value > previousCard.value) {
             userLife--
@@ -111,15 +127,28 @@ open class GameActivity : AppCompatActivity() {
 
     }
 
-
-    fun isHigher(){
+// Function to check if the card is higher than the previous card
+@SuppressLint("SetTextI18n")
+fun isHigher(){
 
         val nextCard = cards.getNewCard()
 
         if (nextCard.value > previousCard.value) {
-            userScore = userScore + 1
+            userScore += 1
             textViewGameResult.text = "You're superduper right!"
             textScore.text = userScore.toString()
+
+            konfettiView.start(
+                Party(
+                    angle = 10,
+                    speed = 0f,
+                    maxSpeed = 50f,
+                    damping = 0.9f,
+                    spread = 360,
+                    colors = listOf(0x70e000, 0x70e000, 0x70e000, 0x70e000),
+                    position = Position.Relative(0.5,0.3),
+                    emitter = Emitter(duration = 100, TimeUnit.MILLISECONDS).max(100))
+            )
 
         } else if (nextCard.value < previousCard.value) {
             userLife--
@@ -137,11 +166,14 @@ open class GameActivity : AppCompatActivity() {
 
     }
 
-    fun gameOver(){
+ // If the userlife is 0 the game will go to results a display the score
+ @SuppressLint("SetTextI18n")
+ fun gameOver(){
         if(userLife == 0){
             textViewGameResult.text = "Game over my friend..."
             val intent = Intent(this, ResultActivity::class.java)
             intent.putExtra("score", userScore)
+            stopTimer()
             startActivity(intent)
             finish()
         }
@@ -157,16 +189,20 @@ open class GameActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                updateTextAndGameOver()
-                textViewGameResult.text = "Time is up! You lost!"
-
-
+                stopTimer()
             }
 
         }.start()
     }
 
+    fun stopTimer(){
 
+        timer.cancel()
+
+    }
+
+
+    // Updates the timer and checks if there's no time left, it will go to ResultActivity and display the score.
 
     fun updateTextAndGameOver(){
         val timeRemaining : Int = (timeLeft / 1000).toInt()
@@ -174,6 +210,8 @@ open class GameActivity : AppCompatActivity() {
 
         if(timeRemaining == 0){
             val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra("score", userScore)
+            stopTimer()
             startActivity(intent)
             finish()
         }

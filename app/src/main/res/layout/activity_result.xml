@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="26dp" />
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/buttonAgain"
@@ -23,7 +23,7 @@
         android:layout_marginBottom="128dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/calistoga"
-        android:text="PLAY AGAIN"
+        android:text="@string/play_again"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:backgroundTint="@null"
@@ -40,7 +40,7 @@
         android:layout_marginBottom="44dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/calistoga"
-        android:text="EXIT"
+        android:text="@string/exit"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:backgroundTint="@null"
@@ -50,6 +50,21 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/congratsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="244dp"
+        android:fontFamily="@font/spicy_rice"
+        android:text="@string/congratulations"
+        android:textAllCaps="false"
+        android:textColor="#FFF34A77"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textViewResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +72,7 @@
         android:layout_marginTop="320dp"
         android:layout_marginEnd="176dp"
         android:fontFamily="@font/spicy_rice"
-        android:text="Your score: "
+        android:text="@string/your_score"
         android:textAllCaps="false"
         android:textColor="#FFF34A77"
         android:textSize="25sp"
@@ -67,17 +82,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/messageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="244dp"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="176dp"
         android:fontFamily="@font/spicy_rice"
-        android:text="Congratulations!"
+        android:text="Nicely done!"
         android:textAllCaps="false"
         android:textColor="#FFF34A77"
-        android:textSize="34sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

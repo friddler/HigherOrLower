@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">HigherOrLower</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="textview">TextView</string>
+    <string name="your_score">Your score:</string>
+    <string name="exit">EXIT</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="is_the_next_card">Is the next card...?</string>
+    <string name="lower">LOWER</string>
+    <string name="higher">HIGHER</string>
+    <string name="time">Time:</string>
+    <string name="life">Life:</string>
+    <string name="score">Score:</string>
 </resources>
